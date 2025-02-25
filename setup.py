@@ -5,6 +5,7 @@ setup(
     version='0.7.9',
     author='Barnabas Paksi',
     author_email='varnavas.shigoto@gmail.com',
+    license='MIT',
     description='Download EU Tender data in a convenient format',
     url='https://github.com/cotopaxih/tabular_theodore',
     packages=find_packages(),

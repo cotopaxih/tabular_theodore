@@ -15,7 +15,6 @@ segmented_df, remaining_links_to_scrape = full_pipeline(excel_path=excel_path,
               base=base,   
               project=project,  
               chunksize=10)  
-############################################################
 
 ### Parse already scraped html files 
 from tabular_theodore import *  
@@ -29,7 +28,19 @@ segmented_df = parse_pipeline(base = base,
                               project = project,   
                               scrape_dir = base + project + "/unparsed raw pages",   
                               scrape_dates = all_dates)  
-############################################################
 
+### Scrape only pages which pass a filter (add alternative keywords to data/keywords.json for other projects)
 
-############################################################
+import sys
+import os 
+
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(), '..'))) 
+from tabular_theodore import get_urls, filtered_scrape
+
+excel_path = "C:/Users/YOURUSER/Downloads/ROU_TED_14-01-2025.xlsx"
+full_url_list = get_urls(excel_path)
+base = "C:/path/to/folder/to/store/files/"  
+project = "Test Project (pre-filtered)"
+scrape_dir = base + project + "/unparsed raw pages"
+
+unchecked_urls = filtered_scrape(full_url_list, scrape_dir, True, ["microscopy"], 2) # only visits two pages (last argument), remaining links are returned
